@@ -8,6 +8,7 @@ import {
   selectCatsFeedStatus,
 } from "../../../entities/cat/model/selectors/cats-feed-selectors";
 import { CatCard } from "../../../entities/cat/ui/cat-card";
+import { FavoriteToggleButton } from "../../../features/favorite-cats/ui/favorite-toggle-button";
 import { useAppDispatch, useAppSelector } from "../../../shared/lib/hooks/store-hooks";
 import { useInfiniteScroll } from "../../../shared/lib/hooks/use-infinite-scroll";
 
@@ -49,7 +50,7 @@ export const CatsFeedGrid = () => {
       )}
       <div className="cats-grid">
         {items.map((cat) => (
-          <CatCard key={cat.id} cat={cat} />
+          <CatCard key={cat.id} cat={cat} action={<FavoriteToggleButton cat={cat} />} />
         ))}
       </div>
       <Flex justify="center" style={{ padding: "20px 0 8px" }}>
