@@ -1,4 +1,6 @@
-import { ConfigProvider, Layout, Typography } from "antd";
+import { ConfigProvider, Layout, Tabs, Typography } from "antd";
+import { AllCatsPage } from "../pages/all-cats/ui/all-cats-page";
+import { FavoriteCatsPage } from "../pages/favorite-cats/ui/favorite-cats-page";
 
 export const App = () => {
   return (
@@ -8,6 +10,22 @@ export const App = () => {
           <Typography.Title level={2} style={{ margin: 0 }}>
             Кошачий Pinterest
           </Typography.Title>
+          <Tabs
+            defaultActiveKey="all-cats"
+            style={{ marginTop: 24 }}
+            items={[
+              {
+                key: "all-cats",
+                label: "Все котики",
+                children: <AllCatsPage />,
+              },
+              {
+                key: "favorite-cats",
+                label: "Любимые котики",
+                children: <FavoriteCatsPage />,
+              },
+            ]}
+          />
         </Layout.Content>
       </Layout>
     </ConfigProvider>

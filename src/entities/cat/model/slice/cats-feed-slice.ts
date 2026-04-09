@@ -26,18 +26,27 @@ export const fetchNextCatsPage = createAsyncThunk<
   CatImage[],
   void,
   { rejectValue: string; state: { catsFeed: CatsFeedState } }
->("catsFeed/fetchNextCatsPage", async (_, { getState, rejectWithValue }) => {
-  const { page } = getState().catsFeed;
+>(
+  "catsFeed/fetchNextCatsPage",
+  async (_, { getState, rejectWithValue }) => {
+    const { page } = getState().catsFeed;
 
-  try {
-    return await fetchCatsPage({
-      page,
-      limit: PAGE_LIMIT,
-    });
-  } catch {
-    return rejectWithValue("Не удалось загрузить котиков");
-  }
-});
+    try {
+      return await fetchCatsPage({
+        page,
+        limit: PAGE_LIMIT,
+      });
+    } catch {
+      return rejectWithValue("Не удалось загрузить котиков");
+    }
+  },
+  {
+    condition: (_, { getState }) => {
+      const state = getState() as { catsFeed: CatsFeedState };
+      return state.catsFeed.status !== "loading" && state.catsFeed.hasMore;
+    },
+  },
+);
 
 const catsFeedSlice = createSlice({
   name: "catsFeed",
