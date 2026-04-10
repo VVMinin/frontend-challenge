@@ -64,7 +64,7 @@ const catsFeedSlice = createSlice({
         state.status = "succeeded";
         state.items.push(...action.payload);
         state.page += 1;
-        state.hasMore = action.payload.length === PAGE_LIMIT;
+        state.hasMore = action.payload.length > 0;
       })
       .addCase(fetchNextCatsPage.rejected, (state, action) => {
         state.status = "failed";

@@ -3,9 +3,10 @@ import { useEffect, useRef } from "react";
 interface UseInfiniteScrollParams {
   disabled: boolean;
   onLoadMore: () => void;
+  rootMargin?: string;
 }
 
-export const useInfiniteScroll = ({ disabled, onLoadMore }: UseInfiniteScrollParams) => {
+export const useInfiniteScroll = ({ disabled, onLoadMore, rootMargin = "200px" }: UseInfiniteScrollParams) => {
   const targetRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -18,13 +19,31 @@ export const useInfiniteScroll = ({ disabled, onLoadMore }: UseInfiniteScrollPar
       return;
     }
 
+    if (typeof IntersectionObserver === "undefined") {
+      const onScroll = () => {
+        const nearBottom =
+          window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 200;
+
+        if (nearBottom) {
+          onLoadMore();
+        }
+      };
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      return () => {
+        window.removeEventListener("scroll", onScroll);
+      };
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
           onLoadMore();
         }
       },
-      { rootMargin: "200px" },
+      { rootMargin },
     );
 
     observer.observe(target);
@@ -32,7 +51,7 @@ export const useInfiniteScroll = ({ disabled, onLoadMore }: UseInfiniteScrollPar
     return () => {
       observer.disconnect();
     };
-  }, [disabled, onLoadMore]);
+  }, [disabled, onLoadMore, rootMargin]);
 
   return targetRef;
 };
