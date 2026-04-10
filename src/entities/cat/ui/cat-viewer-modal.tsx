@@ -28,33 +28,33 @@ export const CatViewerModal = ({
       centered
       width={820}
       closeIcon={
-        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition-colors hover:bg-white/35">
-          <CloseOutlined className="text-base text-white" />
+        <span className="cat-viewer-close">
+          <CloseOutlined className="cat-viewer-close-icon" />
         </span>
       }
-      className="[&_.ant-modal-content]:!overflow-hidden [&_.ant-modal-content]:!bg-black [&_.ant-modal-content]:!p-0 [&_.ant-modal-body]:!overflow-hidden"
-      classNames={{ body: "p-0 overflow-hidden" }}
+      className="cat-viewer-modal"
+      classNames={{ body: "cat-viewer-modal-body" }}
     >
       {currentCat && (
-        <div className="relative h-[62vh] w-full overflow-hidden bg-black">
+        <div className="cat-viewer-viewport">
           <img
             src={currentCat.url}
             alt="cat preview"
-            className="h-full w-full object-contain px-12"
+            className="cat-viewer-image"
           />
           <Button
             type="text"
-            icon={<LeftOutlined className="text-lg text-white" />}
+            icon={<LeftOutlined className="cat-viewer-nav-icon" />}
             disabled={!canGoPrev}
             onClick={() => selectedIndex !== null && onChangeIndex(selectedIndex - 1)}
-            className="!absolute left-3 top-1/2 !h-10 !w-10 -translate-y-1/2 !rounded-full !bg-black/50 hover:!bg-black/70 disabled:!opacity-30"
+            className="cat-viewer-nav cat-viewer-nav-prev"
           />
           <Button
             type="text"
-            icon={<RightOutlined className="text-lg text-white" />}
+            icon={<RightOutlined className="cat-viewer-nav-icon" />}
             disabled={!canGoNext}
             onClick={() => selectedIndex !== null && onChangeIndex(selectedIndex + 1)}
-            className="!absolute right-3 top-1/2 !h-10 !w-10 -translate-y-1/2 !rounded-full !bg-black/50 hover:!bg-black/70 disabled:!opacity-30"
+            className="cat-viewer-nav cat-viewer-nav-next"
           />
         </div>
       )}

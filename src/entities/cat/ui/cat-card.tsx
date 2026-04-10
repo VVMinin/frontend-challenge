@@ -13,8 +13,8 @@ export const CatCard = ({ cat, overlayAction, onClick }: CatCardProps) => {
 
   return (
     <Card
-      className="overflow-hidden rounded-none border-0 shadow-none transition-shadow hover:shadow-md"
-      classNames={{ body: "!hidden" }}
+      className="cat-card"
+      classNames={{ body: "cat-card-body" }}
       cover={
         <div
           role={isInteractive ? "button" : undefined}
@@ -31,12 +31,12 @@ export const CatCard = ({ cat, overlayAction, onClick }: CatCardProps) => {
             }
           }}
           className={[
-            "group relative aspect-square w-full text-left",
-            isInteractive ? "cursor-zoom-in" : "",
+            "cat-card-inner",
+            isInteractive ? "is-interactive" : "",
           ].join(" ")}
         >
-          <img alt="cat" src={cat.url} className="block h-full w-full object-cover" />
-          <div className="absolute bottom-2 right-2">{overlayAction}</div>
+          <img alt="cat" src={cat.url} className="cat-card-image" />
+          <div className="cat-card-action">{overlayAction}</div>
         </div>
       }
     />

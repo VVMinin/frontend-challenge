@@ -1,2 +1,253 @@
-@import "tailwindcss/theme";
-@import "tailwindcss/utilities";
+:root {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #e5e5e5;
+}
+
+.app-layout {
+  min-height: 100vh;
+  background: #e5e5e5;
+}
+
+.app-header {
+  background: #0284c7;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.app-header-inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+.app-tab-button {
+  height: 44px;
+  padding: 0 16px;
+  border: 0;
+  cursor: pointer;
+  background: #0284c7;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.app-tab-button:hover {
+  background: #0ea5e9;
+}
+
+.app-tab-button.is-active,
+.app-tab-button.is-active:hover {
+  background: #0369a1;
+}
+
+.app-content {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 24px 12px 32px;
+}
+
+.feed-alert {
+  margin-bottom: 16px;
+}
+
+.feed-loading-text {
+  display: block;
+  padding: 32px 0;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.infinite-sentinel {
+  height: 1px;
+}
+
+.cats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.cat-card {
+  overflow: hidden;
+  border-radius: 0;
+  transition: box-shadow 0.2s ease;
+}
+
+.cat-card:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+}
+
+.cat-card-body {
+  display: none;
+}
+
+.cat-card-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  text-align: left;
+}
+
+.cat-card-inner.is-interactive {
+  cursor: zoom-in;
+}
+
+.cat-card-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cat-card-action {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+}
+
+.favorite-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.favorite-toggle-icon {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.favorite-toggle.feed.favorite {
+  opacity: 1;
+  color: #ef4444;
+}
+
+.favorite-toggle.feed.not-favorite {
+  opacity: 0;
+  color: rgba(239, 68, 68, 0.7);
+}
+
+.cat-card-inner:hover .favorite-toggle.feed.not-favorite {
+  opacity: 1;
+  color: #ef4444;
+}
+
+.favorite-toggle.favorites {
+  opacity: 1;
+  color: #ef4444;
+}
+
+.cat-card-inner:hover .favorite-toggle.favorites {
+  color: #f87171;
+}
+
+.cat-viewer-modal .ant-modal-content {
+  overflow: hidden;
+  background: #000000;
+  padding: 0;
+}
+
+.cat-viewer-modal .ant-modal-body,
+.cat-viewer-modal-body {
+  overflow: hidden;
+  padding: 0;
+}
+
+.cat-viewer-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  transition: background-color 0.2s ease;
+}
+
+.cat-viewer-close:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.cat-viewer-close-icon {
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.cat-viewer-viewport {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 62vh;
+  overflow: hidden;
+  background: #000000;
+}
+
+.cat-viewer-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0 48px;
+}
+
+.cat-viewer-nav {
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.cat-viewer-nav:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.cat-viewer-nav:disabled {
+  opacity: 0.3;
+}
+
+.cat-viewer-nav-prev {
+  left: 12px;
+}
+
+.cat-viewer-nav-next {
+  right: 12px;
+}
+
+.cat-viewer-nav-icon {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+@media (min-width: 768px) {
+  .app-header-inner {
+    padding: 0 16px;
+  }
+
+  .app-content {
+    padding: 32px 16px;
+  }
+
+  .cats-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 24px;
+  }
+}

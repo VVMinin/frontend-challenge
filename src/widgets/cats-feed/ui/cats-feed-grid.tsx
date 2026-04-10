@@ -76,7 +76,7 @@ export const CatsFeedGrid = () => {
     <div>
       {error && (
         <Alert
-          className="mb-4"
+          className="feed-alert"
           showIcon
           type="error"
           message={error}
@@ -90,7 +90,7 @@ export const CatsFeedGrid = () => {
       {items.length === 0 && status !== "loading" && !error && (
         <Empty description="Котики не найдены" />
       )}
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-4 md:grid-cols-[repeat(auto-fill,minmax(180px,1fr))] md:gap-6">
+      <div className="cats-grid">
         {items.map((cat, index) => (
           <CatCard
             key={cat.id}
@@ -101,11 +101,11 @@ export const CatsFeedGrid = () => {
         ))}
       </div>
       {status === "loading" && (
-        <Typography.Text className="block py-8 text-center text-sm text-black/70">
+        <Typography.Text className="feed-loading-text">
           ... загружаем еще котиков ...
         </Typography.Text>
       )}
-      {hasMore && <div ref={targetRef} className="h-px" />}
+      {hasMore && <div ref={targetRef} className="infinite-sentinel" />}
       <CatViewerModal
         cats={items}
         selectedIndex={selectedIndex}

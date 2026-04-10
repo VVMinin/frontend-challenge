@@ -24,18 +24,18 @@ export const FavoriteToggleButton = ({ cat, mode = "feed" }: FavoriteToggleButto
         dispatch(toggleFavoriteCat(cat));
       }}
       className={[
-        "flex h-8 w-8 items-center justify-center transition-all",
+        "favorite-toggle",
         isFavoritesMode
-          ? "opacity-100 text-red-500 hover:text-red-400"
+          ? "favorites"
           : isFavorite
-            ? "opacity-100 text-red-500"
-            : "opacity-0 text-red-500/70 group-hover:opacity-100 group-hover:text-red-500",
+            ? "feed favorite"
+            : "feed not-favorite",
       ].join(" ")}
     >
       {shouldShowFilledHeart ? (
-        <HeartFilled className="text-[26px] leading-none transition-colors" />
+        <HeartFilled className="favorite-toggle-icon" />
       ) : (
-        <HeartOutlined className="text-[26px] leading-none transition-colors" />
+        <HeartOutlined className="favorite-toggle-icon" />
       )}
     </button>
   );

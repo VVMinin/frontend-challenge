@@ -15,7 +15,7 @@ export const FavoriteCatsPage = () => {
   }
 
   return (
-    <div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-4 md:grid-cols-[repeat(auto-fill,minmax(180px,1fr))] md:gap-6">
+    <div className="cats-grid">
       {items.map((cat, index) => (
         <CatCard
           key={cat.id}
